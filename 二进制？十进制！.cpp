@@ -1,13 +1,7 @@
-/*Á´½Ó£ºhttps://ac.nowcoder.com/acm/contest/11231/A
-À´Ô´£ºÅ£¿ÍÍø
-
-ÌâÄ¿ÃèÊö
+/*
 ¸ø¶¨Á½¸öÊ®½øÖÆÕûÊý : AA,BB
-
 ÄãÐèÒª°ÑËüÃÇµÄ¶þ½øÖÆÐÎÊ½ÒÔÊ®½øÖÆµÄÔËËã·¨ÔòÏà¼ÓÊä³ö½á¹û¡£
-
 ÀýÈç£º
-
 A = 3 , B = 2A=3,B=2 µÄÊ±ºò£¬AA µÄ¶þ½øÖÆ±íÊ¾ÊÇ : 1111 , BB µÄ¶þ½øÖÆ±íÊ¾ÊÇ 1010 £¬ÄãÐèÒªÊä³ö´ð°¸Îª : 2121
 
 
@@ -15,33 +9,25 @@ A = 3 , B = 2A=3,B=2 µÄÊ±ºò£¬AA µÄ¶þ½øÖÆ±íÊ¾ÊÇ : 1111 , BB µÄ¶þ½øÖÆ±íÊ¾ÊÇ 1010 £
 Ò»ÐÐÁ½¸öÊ®½øÖÆÕûÊý: AA,BB
 Êä³öÃèÊö:
 Ò»ÐÐÒ»¸öÕûÊý£¬±íÊ¾Ïà¼ÓµÄ½á¹û¡£
-Ê¾Àý1
-ÊäÈë
-¸´ÖÆ
+
+ÊäÈë£º
 2 3
-Êä³ö
-¸´ÖÆ
+Êä³ö£º
 21
-Ê¾Àý2
-ÊäÈë
-¸´ÖÆ
+
+ÊäÈë£º
 5 4
-Êä³ö
-¸´ÖÆ
+Êä³ö£º
 201
+
 ±¸×¢:
-
-
 ¶ÔÓÚ 100100 % µÄÊý¾Ý:
-
 1 <= A,B <= 327681<=A,B<=32768
 
 ¹ØÓÚÒ»¸öÊ®½øÖÆÊýÈçºÎ×ª»¯Îª¶þ½øÖÆ£º
-
 ½«Ê®½øÖÆÊýÃ¿´Î³ýÒÔ 22 £¬È¡ÓàÊý£¬Ö±µ½Õâ¸öÊý±äÎª0£¬×îºó½«µÃµ½µÄÓàÊý·´Ïò¼ÇÂ¼¾ÍÊÇÔ­Ê®½øÖÆÊýµÄ¶þ½øÖÆÐÎÊ½¡£
 
 Àý×Ó:
-
 1
 2
 3
@@ -50,11 +36,32 @@ A = 3 , B = 2A=3,B=2 µÄÊ±ºò£¬AA µÄ¶þ½øÖÆ±íÊ¾ÊÇ : 1111 , BB µÄ¶þ½øÖÆ±íÊ¾ÊÇ 1010 £
 5------> 2ÓàÏÂ 1
 2------> 1ÓàÏÂ 0
 1------> 0ÓàÏÂ 1
-×îºóµÃµ½ 1010 µÄ¶þ½øÖÆ±íÊ¾¾ÍÊÇ 10101010 */
+×îºóµÃµ½ 1010 µÄ¶þ½øÖÆ±íÊ¾¾ÍÊÇ 10101010
+*/
 
 
+/*Õý½â*/
 #include <bits/stdc++.h>
-#include <cstring>
+using namespace std;
+int main()
+{
+    long long a, b, x=0, y=0, flag=1;
+    cin>>a>>b;              // ¸ø¶¨µÄÁ½¸öÊ®½øÖÆÕûÊý
+    while(a) {
+        x += a % 2 * flag;  // ¡°×Ö·û´®ÐÎÊ½¡±µÄÓàÊý
+        a /= 2;             // ½«Ê®½øÖÆÊýÃ¿´Î³ýÒÔ2£¬È¡ÓàÊý£¬whileÑ­»·µ½Õâ¸öÊý±äÎª0
+        flag *= 10;         // ÊµÏÖÓàÊý¡°×Ö·û´®¡±µÄ·½·¨
+    }
+    flag = 1;               // ÖØÖÃflag£¬ÏàÍ¬µÄ·½·¨²Ù×÷ÁíÒ»¸öÕûÊýb
+    while(b) {
+        y += b % 2 * flag;
+        b /= 2;
+        flag *= 10;
+    }
+    cout<<x+y;
+}
+/*´í½â*/
+#include <bits/stdc++.h>
 using namespace std;
 int main()
 {
@@ -65,16 +72,16 @@ int main()
         x[++i] = a % 2;
         count++;
     }
-    for(i=count; i>=0; i++) {
-        sign += x[i];
+    for(i=count; i>=0; i--) {
+        sign += to_string(x[i]);
     }
     int num = stoi(sign, 0, 10);
     while(b/2!=0) {
         y[++j] = b % 2;
         count2++;
     }
-    for(j=count2; j>=0; j++) {
-        sign2 += y[j];
+    for(j=count2; j>=0; j--) {
+        sign2 += to_string(y[j]);
     }
     int num2 = stoi(sign2, 0, 10);
     int sum=0;
